@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <style>
+
+        .weather-info img {
+            vertical-align: middle;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for transform and shadow */
+        }
+        
+        .weather-info img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Increase shadow on hover */
+        }
+        
+
+        .weather-info img {
+            vertical-align: middle;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%; /* Circular border */
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white background */
+            padding: 10px; /* Space between image and border */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow effect */
+            transition: transform 0.3s ease;
+        }
+        
+        .weather-info img:hover {
+            transform: scale(1.1);
+        }
+        
+
+        .weather-info img {
+            vertical-align: middle;
+            width: 80px;
+            height: 80px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        }
+        
+        .weather-info img:hover {
+            transform: scale(1.1);
+        }
+        
+
+        .weather-info img {
+            vertical-align: middle;
+            width: 80px;
+            height: 80px;
+            transition: transform 0.3s ease; /* Smooth transition for scaling */
+        }
+        
+        .weather-info img:hover {
+            transform: scale(1.1); /* Slightly enlarge the icon on hover */
+        }
+        
+        .weather-info img {
+            vertical-align: middle;
+            width: 80px;
+            height: 80px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        }
+        
+        .weather-info img:hover {
+            transform: scale(1.1);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #89f7fe, #66a6ff);
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            max-width: 400px;
+            width: 90%;
+            transition: transform 0.3s ease;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 12px;
+            width: 75%;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 18px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+
+            .container {
+                display: centre;
+                justify-content: center; /* Centers horizontally */
+                align-items: center; /* Centers vertically */
+                height: 100vh; /* Adjust this based on your layout */
+            }
+            
+            button {
+                padding: 12px 18px;
+                background: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 30px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+            
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .weather-info {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .weather-info img {
+            vertical-align: middle;
+            width: 80px;
+            height: 80px;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 22px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .datetime {
+            font-size: 14px;
+            color: #888;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 20px;
+            }
+            h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% load static %}
+
+<div class="container">
+    <h1>Weather Forecast</h1>
+
+    <!-- Search form -->
+    <form method="get">
+        <input type="text" name="city" placeholder="Enter city name" value="{{ city|default:'Bhubaneswar' }}">
+        <button type="submit">Get Weather</button>
+    </form>
+<!-- Display weather information -->
+{% if error %}
+    <p>{{ error }}</p>
+{% else %}
+    <div class="weather-info">
+        <img src="{% static 'weather_icons/few_clouds@2x.png' %}" alt="Weather icon">
+        <h2>{{ city }}</h2>
+        <p><strong>{{ temperature }}&deg;C</strong></p>
+        <p>{{ description|title }}</p>
+        <p class="datetime"><small>Last updated: {{ datetime }}</small></p>
+    </div>
+{% endif %}
+
+</div>
+
+</body>
+</html>
